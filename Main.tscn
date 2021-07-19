@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://music/Danyah Rays - Can't Stop The Ocean.mp3" type="AudioStream" id=1]
 [ext_resource path="res://gui.tscn" type="PackedScene" id=2]
@@ -12,16 +12,6 @@
 [ext_resource path="res://follow_player.gd" type="Script" id=11]
 [ext_resource path="res://asteroid_spawner.gd" type="Script" id=12]
 [ext_resource path="res://AudioManager.gd" type="Script" id=13]
-
-[sub_resource type="Environment" id=1]
-background_mode = 1
-background_energy = 0.0
-ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.0
-glow_intensity = 1.6
-glow_bloom = 0.2
-glow_blend_mode = 0
-adjustment_saturation = 1.35
 
 [sub_resource type="PlaneMesh" id=2]
 
@@ -64,7 +54,6 @@ light_indirect_energy = 0.0
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054644, 0, 0.5 )
 keep_aspect = 0
-environment = SubResource( 1 )
 projection = 1
 script = ExtResource( 11 )
 player = NodePath("../../Game/airplane")
