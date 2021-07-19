@@ -8,6 +8,8 @@ const MAX_SPEED = 0.35
 var speed := 1.0
 var rotation_speed := Vector2(1.0, 1.0)
 
+var remove_flag = false
+
 func _ready():
 	speed = rand_range(0, MAX_SPEED)
 	rotation_speed = Vector2(rand_range(-2, 2), rand_range(-2, 2))
@@ -16,9 +18,11 @@ func _ready():
 func _process(delta):
 	if global_transform.origin.z != 0:
 		global_transform.origin.z = 0
-	teleport()
 	rotate_x(rotation_speed.x * delta)
 	rotate_z(rotation_speed.y * delta)
+	if teleport():
+		rotation_speed = Vector2(rand_range(-2, 2), rand_range(-2, 2))
+		speed = rand_range(0, MAX_SPEED)
 	
 func _physics_process(delta):
 	move_and_slide(Vector3.LEFT * speed)
@@ -41,13 +45,19 @@ func teleport():
 	var self_right = aabb.end.x
 	
 	if self_right < cam_left:
-		global_transform.origin.x = cam_right + aabb.size.x/2
-		global_transform.origin.y = rand_range(cam_bottom, cam_top)
-		speed = rand_range(0, MAX_SPEED)
+		if remove_flag:
+			get_parent().remove_child(self)
+		else:
+			global_transform.origin.x = cam_right + aabb.size.x/2
+			global_transform.origin.y = rand_range(cam_bottom, cam_top)
+			return true
 	elif self_top < cam_bottom:
 		global_transform.origin.x = rand_range(cam_left, cam_right)
 		global_transform.origin.y = cam_top + aabb.size.y/2
+		return true
 	elif self_bottom > cam_top:
 		global_transform.origin.x = rand_range(cam_left, cam_right)
 		global_transform.origin.y = cam_bottom - aabb.size.y/2
-
+		return true
+		
+	return false
