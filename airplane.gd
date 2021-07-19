@@ -53,7 +53,8 @@ func control(delta):
 	translate_object_local(Vector3.RIGHT * vel.x * delta + Vector3.UP * vel.y * delta)
 	
 	if proximity_counter > 0:
-		bullet_time_ms += round(delta*100)
+		bullet_time_ms += round(delta*1000)
+		Engine.time_scale = lerp(1.0, 0.5, clamp(bullet_time_ms/300, 0, 1))
 
 func _physics_process(delta):
 	if colliding: return
@@ -70,9 +71,8 @@ func _on_proximity_sensor_body_entered(body):
 	proximity_counter += 1
 	if proximity_counter > max_proximity_counter:
 		max_proximity_counter = proximity_counter
-	if proximity_counter == 2:
+	if proximity_counter == 1:
 		bullet_time_ms = 0
-		Engine.time_scale = 0.5
 		emit_signal("bullet_time_begin")
 
 
@@ -80,7 +80,6 @@ func _on_proximity_sensor_body_exited(body):
 	proximity_counter -= 1
 	if proximity_counter == 0:
 		Engine.time_scale = 1
-		if max_proximity_counter >= 2:
-			emit_signal("bullet_time_end")
-			emit_signal("bullet_time_score", round(100 * bullet_time_ms * max_proximity_counter))
-			max_proximity_counter = 0
+		emit_signal("bullet_time_end")
+		emit_signal("bullet_time_score", round(bullet_time_ms * 10 / 1000) * 1000)
+		max_proximity_counter = 0
