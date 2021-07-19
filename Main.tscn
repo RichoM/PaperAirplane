@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
+[ext_resource path="res://music/Danyah Rays - Can't Stop The Ocean.mp3" type="AudioStream" id=1]
 [ext_resource path="res://gui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://space_noise/space_noise_1.tres" type="Material" id=3]
 [ext_resource path="res://space_noise/space_noise_0.tres" type="Material" id=4]
 [ext_resource path="res://space_noise/space_noise_2.tres" type="Material" id=5]
 [ext_resource path="res://airplane.tscn" type="PackedScene" id=6]
+[ext_resource path="res://music.gd" type="Script" id=7]
 [ext_resource path="res://parallax.gd" type="Script" id=8]
 [ext_resource path="res://stars/stars.png" type="Texture" id=9]
 [ext_resource path="res://stars/stars.shader" type="Shader" id=10]
@@ -120,6 +122,11 @@ camera = NodePath("..")
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 exclamation_messages = [ "MARVELOUS!", "AMAZING!", "OUTSTANDING!", "AWESOME!", "GREAT!", "INCREDIBLE!", "STUNNING!", "IMPRESSIVE!", "NICE!", "WOW!" ]
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+script = ExtResource( 7 )
+
 [connection signal="bullet_time_begin" from="airplane" to="Camera" method="_on_airplane_bullet_time_begin"]
 [connection signal="bullet_time_end" from="airplane" to="Camera" method="_on_airplane_bullet_time_end"]
 [connection signal="bullet_time_score" from="airplane" to="CanvasLayer/GUI" method="_on_airplane_bullet_time_score"]

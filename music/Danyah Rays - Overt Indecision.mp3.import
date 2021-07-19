@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Danyah Rays - Overt Indecision.mp3-fd194d287b56a9d8f4534b652af5ef45.mp3str"
+
+[deps]
+
+source_file="res://music/Danyah Rays - Overt Indecision.mp3"
+dest_files=[ "res://.import/Danyah Rays - Overt Indecision.mp3-fd194d287b56a9d8f4534b652af5ef45.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
