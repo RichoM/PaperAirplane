@@ -16,6 +16,8 @@ var losers = [preload("res://sfx/loser (1).wav"),
 onready var music_player = $music
 onready var sfx_players = [$sfx1, $sfx2]
 
+var game_over = false
+
 func _ready():
 	music_player.stream = choose_next_score()
 	music_player.pitch_scale = rand_range(0.85, 1.07)
@@ -44,9 +46,17 @@ func store_last_index_played(last):
 
 
 func _on_airplane_game_over():
+	game_over = true
 	music_player.stop()
 	sfx_players[0].stream = explosions[randi() % explosions.size()]
 	sfx_players[1].stream = losers[randi() % losers.size()]
 	sfx_players[0].play()
 	sfx_players[1].play()
 	
+func _on_airplane_bullet_time_score(score):
+	if game_over: return
+	if score > 2000:
+		sfx_players[0].stream = preload("res://sfx/sound (1).wav")
+		sfx_players[1].stream = preload("res://sfx/sound (2).wav")
+		sfx_players[0].play()
+		sfx_players[1].play()
