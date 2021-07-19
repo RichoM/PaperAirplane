@@ -12,6 +12,7 @@ func _ready():
 	var timer = $timer
 	timer.connect("timeout", self, "spawn_new_asteroid")
 	timer.start()
+	call_deferred("spawn_new_asteroid")
 
 func spawn_new_asteroid():
 	if counter < max_asteroids:

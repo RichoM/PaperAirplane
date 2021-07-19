@@ -117,6 +117,7 @@ root = NodePath("../..")
 camera = NodePath("..")
 
 [node name="timer" type="Timer" parent="Camera/asteroid_spawner"]
+wait_time = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
