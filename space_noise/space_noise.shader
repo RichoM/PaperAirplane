@@ -27,5 +27,5 @@ void fragment() {
 	SPECULAR = specular;
 	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
 	EMISSION = (emission.rgb+emission_tex)*emission_energy;
-	ALPHA = smoothstep(0.05, 0.35, ALBEDO.r * ALBEDO.g *  ALBEDO.b * 0.75);
+	ALPHA = smoothstep(0.05 + cos(uv1_offset.x + TIME * 0.65) * 0.025, 0.35 + sin(uv1_offset.x + TIME * 0.65) * 0.05, ALBEDO.r * ALBEDO.g * ALBEDO.b * 0.75);
 }
