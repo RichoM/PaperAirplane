@@ -6,7 +6,6 @@ uniform float specular;
 uniform float metallic;
 uniform float roughness : hint_range(0,1);
 uniform float point_size : hint_range(0,128);
-uniform sampler2D texture_emission : hint_black_albedo;
 uniform vec4 emission : hint_color;
 uniform float emission_energy;
 uniform vec3 uv1_scale;
@@ -25,7 +24,6 @@ void fragment() {
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
-	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
-	EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	EMISSION = emission.rgb*emission_energy;
 	ALPHA = smoothstep(0.05 + cos(uv1_offset.x + TIME * 0.55) * 0.025, 0.35 + sin(uv1_offset.x + TIME * 0.65) * 0.05, ALBEDO.r * ALBEDO.g * ALBEDO.b * 0.75);
 }
