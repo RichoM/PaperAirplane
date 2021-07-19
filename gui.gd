@@ -1,7 +1,7 @@
 extends Control
 
 export(Array, String) var exclamation_messages
-const SCORE_FILE_PATH = "user://max_score.txt"
+const SCORE_FILE_PATH = "user://max_score.bin"
 
 var score = 0
 var max_score = 0
