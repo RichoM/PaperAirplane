@@ -42,7 +42,8 @@ func control(delta):
 		vel.y += GRAVITY * delta
 		
 	vel.y = clamp(vel.y, MIN_SPEED, MAX_SPEED)
-	vel.x += 0.01 * delta
+	vel.x += 0.0025 * delta
+	vel.x = clamp(vel.x, 0, 0.85)
 	
 	var rot_z = (vel.y / (MAX_SPEED - MIN_SPEED) * 2)
 	$rotation.rotation.z = rot_z * 1.25
