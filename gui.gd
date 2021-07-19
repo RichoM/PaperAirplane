@@ -26,7 +26,7 @@ func update():
 		msg_counter -= 1
 		
 	if not game_over:
-		update_score(100)
+		update_score(10)
 
 
 func update_score(s = 100):
