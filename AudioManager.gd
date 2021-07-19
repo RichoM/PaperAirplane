@@ -7,14 +7,14 @@ const LAST_BACKGROUND_PATH = "user://last_background_music.bin"
 
 var explosions = [preload("res://sfx/explosion (1).wav"),
 				preload("res://sfx/explosion (2).wav"),
-				preload("res://sfx/explosion (3).wav"),
-				preload("res://sfx/explosion (4).wav"),
-				preload("res://sfx/explosion (5).wav"),
-				preload("res://sfx/explosion (6).wav"),
-				preload("res://sfx/explosion (7).wav"),]
+				preload("res://sfx/explosion (3).wav"),]
+var losers = [preload("res://sfx/loser (1).wav"),
+			preload("res://sfx/loser (2).wav"),
+			preload("res://sfx/loser (3).wav"),
+			preload("res://sfx/loser (4).wav"),]
 
 onready var music_player = $music
-onready var sfx_player = $sfx
+onready var sfx_players = [$sfx1, $sfx2]
 
 func _ready():
 	music_player.stream = choose_next_score()
@@ -45,5 +45,8 @@ func store_last_index_played(last):
 
 func _on_airplane_game_over():
 	music_player.stop()
-	sfx_player.stream = explosions[randi() % explosions.size()]
-	sfx_player.play()
+	sfx_players[0].stream = explosions[randi() % explosions.size()]
+	sfx_players[1].stream = losers[randi() % losers.size()]
+	sfx_players[0].play()
+	sfx_players[1].play()
+	

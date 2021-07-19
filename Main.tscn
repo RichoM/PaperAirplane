@@ -129,8 +129,12 @@ script = ExtResource( 13 )
 
 [node name="music" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource( 1 )
+volume_db = -10.0
 
-[node name="sfx" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="sfx1" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="sfx2" type="AudioStreamPlayer" parent="AudioManager"]
+volume_db = -6.0
 
 [connection signal="bullet_time_begin" from="airplane" to="Camera" method="_on_airplane_bullet_time_begin"]
 [connection signal="bullet_time_end" from="airplane" to="Camera" method="_on_airplane_bullet_time_end"]
