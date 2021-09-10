@@ -55,7 +55,7 @@ func control(delta):
 	
 	if proximity_counter > 0:
 		bullet_time_ms += round(delta*1000)
-		Engine.time_scale = lerp(1.0, 0.5, clamp(bullet_time_ms/300, 0, 1))
+		Engine.time_scale = lerp(1.0, 0.35, clamp(bullet_time_ms/300, 0, 1))
 
 func _physics_process(delta):
 	if colliding: return

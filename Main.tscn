@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://music/Danyah Rays - Can't Stop The Ocean.mp3" type="AudioStream" id=1]
 [ext_resource path="res://gui.tscn" type="PackedScene" id=2]
@@ -12,6 +12,139 @@
 [ext_resource path="res://follow_player.gd" type="Script" id=11]
 [ext_resource path="res://asteroid_spawner.gd" type="Script" id=12]
 [ext_resource path="res://AudioManager.gd" type="Script" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "zoom"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("space_noise/space_noise_0:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.4, 0, 0.950001, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("space_noise/space_noise_0:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("space_noise/space_noise_0:scale:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.4, 0, 0.949525, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("space_noise/space_noise_1:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1.5, -0.25, 0, 0.4, 0, 1.35, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("space_noise/space_noise_1:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("space_noise/space_noise_1:scale:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1.5, -0.25, 0, 0.4, 0, 1.35, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("space_noise/space_noise_2:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 2, -0.25, 0, 0.4, 0, 1.75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("space_noise/space_noise_2:scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("space_noise/space_noise_2:scale:z")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 2, -0.25, 0, 0.4, 0, 1.75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath(".:size")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.4, 0, 0.65, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("stars:scale:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.4, 0, 0.75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("stars:scale:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("stars:scale:z")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.4, 0, 0.75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
 
 [sub_resource type="PlaneMesh" id=2]
 
@@ -50,16 +183,22 @@ transform = Transform( 0.396038, 0.59109, -0.702685, -0.532465, 0.771291, 0.3487
 light_indirect_energy = 0.0
 
 [node name="airplane" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.005, 0 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054644, 0, 0.5 )
 keep_aspect = 0
 projection = 1
+current = true
+far = 10.0
 script = ExtResource( 11 )
 player = NodePath("../../Game/airplane")
 
+[node name="Animation" type="AnimationPlayer" parent="Camera"]
+anims/zoom = SubResource( 1 )
+
 [node name="space_noise" type="Spatial" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 
 [node name="space_noise_0" type="MeshInstance" parent="Camera/space_noise"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -3 )
@@ -83,7 +222,7 @@ script = ExtResource( 8 )
 speed = 0.01
 
 [node name="stars" type="Spatial" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 
 [node name="stars_0" type="MeshInstance" parent="Camera/stars"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -108,9 +247,10 @@ camera = NodePath("..")
 [node name="timer" type="Timer" parent="Camera/asteroid_spawner"]
 wait_time = 7.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI_layer" type="CanvasLayer" parent="."]
+layer = 2
 
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+[node name="GUI" parent="GUI_layer" instance=ExtResource( 2 )]
 exclamation_messages = [ "MARVELOUS!", "AMAZING!", "OUTSTANDING!", "AWESOME!", "GREAT!", "INCREDIBLE!", "STUNNING!", "IMPRESSIVE!", "NICE!", "WOW!" ]
 
 [node name="AudioManager" type="Spatial" parent="."]
@@ -127,7 +267,7 @@ volume_db = -6.0
 
 [connection signal="bullet_time_begin" from="airplane" to="Camera" method="_on_airplane_bullet_time_begin"]
 [connection signal="bullet_time_end" from="airplane" to="Camera" method="_on_airplane_bullet_time_end"]
-[connection signal="bullet_time_score" from="airplane" to="CanvasLayer/GUI" method="_on_airplane_bullet_time_score"]
+[connection signal="bullet_time_score" from="airplane" to="GUI_layer/GUI" method="_on_airplane_bullet_time_score"]
 [connection signal="bullet_time_score" from="airplane" to="AudioManager" method="_on_airplane_bullet_time_score"]
-[connection signal="game_over" from="airplane" to="CanvasLayer/GUI" method="_on_airplane_game_over"]
+[connection signal="game_over" from="airplane" to="GUI_layer/GUI" method="_on_airplane_game_over"]
 [connection signal="game_over" from="airplane" to="AudioManager" method="_on_airplane_game_over"]
