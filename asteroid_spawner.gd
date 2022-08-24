@@ -4,7 +4,7 @@ export var root : NodePath
 export var camera : NodePath
 export var max_asteroids = 5
 
-var asteroids = [preload("res://asteroid_0.tscn"), preload("res://asteroid_1.tscn")]
+var asteroids = [preload("res://asteroid_0.tscn"), preload("res://asteroid_1.tscn"), preload("res://asteroid_2.tscn")]
 var spawned = []
 
 func _ready():
