@@ -187,3 +187,4 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="GUI_layer/new game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="GUI_layer/leaderboard" to="." method="_on_leaderboard_pressed"]
