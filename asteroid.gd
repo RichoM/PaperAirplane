@@ -13,7 +13,10 @@ var remove_flag = false
 func _ready():
 	speed = rand_range(0, MAX_SPEED)
 	rotation_speed = Vector2(rand_range(-2, 2), rand_range(-2, 2))
-	scale_object_local(Vector3(rand_range(0.5, 1.5), rand_range(0.5, 1.5), rand_range(0.5, 1.5)))
+	
+	# Same factor for all three axis to avoid collider bug
+	var scale_factor = rand_range(0.5, 1.5)
+	scale_object_local(Vector3(scale_factor, scale_factor, scale_factor))
 	
 func _process(delta):
 	if global_transform.origin.z != 0:
