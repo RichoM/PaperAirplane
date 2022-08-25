@@ -33,7 +33,7 @@ func gameover(delta):
 	translate_object_local(Vector3.RIGHT * vel.x * delta + Vector3.UP * vel.y * delta)
 	
 	if abs(vel.y) > MAX_SPEED:
-		get_tree().reload_current_scene()
+		SceneManager.change_scene("res://end.tscn")
 
 func control(delta):
 	if Input.is_action_pressed("movement_up"):

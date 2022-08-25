@@ -2,12 +2,11 @@ extends Control
 
 export(Array, String) var exclamation_messages
 
-var score = 0
-
 var msg_counter = 0
 var game_over = false
 
 func _ready():
+	Globals.score = 0
 	Globals.read_max_score()
 	$timer.connect("timeout", self, "update")
 	$timer.start(0.1)
@@ -21,13 +20,11 @@ func update():
 	if not game_over:
 		update_score(10)
 
-
 func update_score(s = 100):
-	score += s
-	var max_score = Globals.max_score
-	$score_list/score.text = str(score)
-	$score_list/max_score.text = str(max_score)
-	if score > max_score:
+	Globals.score += s
+	$score_list/score.text = str(Globals.score)
+	$score_list/max_score.text = str(Globals.max_score)
+	if Globals.score > Globals.max_score:
 		$score_list/score.set("custom_colors/font_color", Color.red)
 	
 func _input(event):
@@ -39,8 +36,8 @@ func update_max_score(score):
 
 func _on_airplane_game_over():
 	game_over = true
-	if score > Globals.max_score:
-		update_max_score(score)
+	if Globals.score > Globals.max_score:
+		update_max_score(Globals.score)
 
 func _on_airplane_bullet_time_score(score):
 	if game_over: return

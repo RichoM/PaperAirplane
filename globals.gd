@@ -10,6 +10,8 @@ const SCORE_FILE_PATH = "user://max_score.paperairplane.bin"
 var user_name
 var max_score
 
+var score = 0
+
 func _ready():
 	read_user_name()
 	read_max_score()
