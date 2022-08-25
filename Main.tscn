@@ -192,7 +192,8 @@ projection = 1
 current = true
 far = 10.0
 script = ExtResource( 11 )
-player = NodePath("../../Game/airplane")
+player_path = NodePath("../airplane")
+light_path = NodePath("../DirectionalLight")
 
 [node name="Animation" type="AnimationPlayer" parent="Camera"]
 anims/zoom = SubResource( 1 )
