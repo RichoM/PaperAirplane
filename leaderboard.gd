@@ -17,11 +17,14 @@ func _on_fetch_scores_request_completed(result, response_code, headers, body):
 		return
 	
 	var leaderboard = json.result["dreamlo"]["leaderboard"]
-	if leaderboard == null:
-		back_to_menu()
+	if leaderboard == null: # The leaderboard is empty
 		return
 		
 	leaderboard = leaderboard["entry"]
+	
+	# HACK(Richo): It seems if only one score is submitted we don't get an array
+	if typeof(leaderboard) != TYPE_ARRAY:
+		leaderboard = [leaderboard]
 		
 	var players_node = get_node(players_path)
 	var scores_node = get_node(scores_path)

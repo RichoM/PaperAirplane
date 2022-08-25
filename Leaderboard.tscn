@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://leaderboard.gd" type="Script" id=1]
 [ext_resource path="res://ui_font/Tomorrow-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://parallax.gd" type="Script" id=3]
 [ext_resource path="res://stars/stars.shader" type="Shader" id=4]
+[ext_resource path="res://ui_font/Tomorrow-SemiBold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://space_noise/space_noise_1.tres" type="Material" id=6]
 [ext_resource path="res://stars/stars.png" type="Texture" id=7]
+[ext_resource path="res://loading.gd" type="Script" id=8]
 [ext_resource path="res://space_noise/space_noise_0.tres" type="Material" id=9]
 [ext_resource path="res://space_noise/space_noise_2.tres" type="Material" id=10]
 
@@ -38,6 +40,10 @@ shader_param/uv1_offset = Vector3( 4.487, -10.587, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/texture_albedo = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 72
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 41
@@ -105,6 +111,22 @@ transform = Transform( 0.396038, 0.59109, -0.702685, -0.532465, 0.771291, 0.3487
 directional_shadow_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Loading" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -67.0
+custom_fonts/font = SubResource( 6 )
+text = "Loading..."
+align = 1
+valign = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="Timer" parent="CanvasLayer/Loading"]
+autostart = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -246,7 +268,6 @@ margin_bottom = 536.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 5 )
 align = 1
-percent_visible = -0.0208333
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -434,3 +455,5 @@ __meta__ = {
 }
 
 [connection signal="request_completed" from="fetch_scores" to="." method="_on_fetch_scores_request_completed"]
+[connection signal="request_completed" from="fetch_scores" to="CanvasLayer/Loading" method="_on_fetch_scores_request_completed"]
+[connection signal="timeout" from="CanvasLayer/Loading/timer" to="CanvasLayer/Loading" method="_on_timer_timeout"]
