@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://menu.gd" type="Script" id=1]
 [ext_resource path="res://airplane/airplane.obj" type="ArrayMesh" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://parallax.gd" type="Script" id=8]
 [ext_resource path="res://stars/stars.png" type="Texture" id=9]
 [ext_resource path="res://stars/stars.shader" type="Shader" id=10]
+[ext_resource path="res://icon_font/icon_font.tres" type="DynamicFont" id=11]
 [ext_resource path="res://airplane/legalpad.jpg" type="Texture" id=12]
 [ext_resource path="res://ui_font/Tomorrow-Medium.ttf" type="DynamicFontData" id=14]
 
@@ -186,5 +187,22 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="change_name" type="Button" parent="GUI_layer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = -87.0
+margin_right = 104.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.403922, 0, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "e"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="GUI_layer/new game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="GUI_layer/leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="GUI_layer/change_name" to="." method="_on_change_name_pressed"]

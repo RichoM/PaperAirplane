@@ -1,7 +1,7 @@
 extends Control
 
 export(Array, String) var exclamation_messages
-const SCORE_FILE_PATH = "user://max_score.bin"
+const SCORE_FILE_PATH = "user://max_score.paperairplane.bin"
 
 var score = 0
 var max_score = 0
@@ -64,3 +64,7 @@ func _on_airplane_bullet_time_score(score):
 		msg = exclamation + "\n" + msg
 	$msg.text = msg
 	update_score(score)
+
+
+func _on_back_button_pressed():
+	SceneManager.back()

@@ -4,7 +4,7 @@ export var players_path : NodePath
 export var scores_path : NodePath
 
 func _ready():
-	$fetch_scores.request("https://sum-richo.herokuapp.com/leaderboard/63062a5d8f40bba6d06f60be*KQQwDhbyYkW3wOtnkzx_2glfPQcl4Z0kCNAX0oG-kb7g")
+	$fetch_scores.request(Globals.LEADERBOARD_URL)
 
 func _on_fetch_scores_request_completed(result, response_code, headers, body):
 	if response_code != 200:
@@ -38,4 +38,4 @@ func _process(delta):
 		back_to_menu()
 
 func back_to_menu():
-	get_tree().change_scene("res://Menu.tscn")
+	SceneManager.back()
