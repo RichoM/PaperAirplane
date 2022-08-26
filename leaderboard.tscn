@@ -58,6 +58,7 @@ script = ExtResource( 1 )
 indices_path = NodePath("CanvasLayer/HBoxContainer/Indices")
 players_path = NodePath("CanvasLayer/HBoxContainer/Players")
 scores_path = NodePath("CanvasLayer/HBoxContainer/Scores")
+loading_path = NodePath("CanvasLayer/Loading")
 
 [node name="fetch_scores" type="HTTPRequest" parent="."]
 

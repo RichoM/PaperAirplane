@@ -1,4 +1,4 @@
-extends Spatial
+extends Control
 
 export var indices_path : NodePath
 export var players_path : NodePath
@@ -6,24 +6,24 @@ export var scores_path : NodePath
 export var message_path : NodePath
 
 func _ready():
-	get_node(message_path).text = "GAME OVER: " + str(Globals.score)
+	if Globals.score > Globals.max_score:
+		Globals.set_max_score(Globals.score)
+		get_node(message_path).text = "NEW HIGHSCORE: " + str(Globals.score)
+		$AnimationPlayer.play("highscore")
+		$sfx.play()
+	else:
+		get_node(message_path).text = "GAME OVER: " + str(Globals.score)
 	
-	var query = JSON.print({"player": Globals.user_name, "score": Globals.score})
-	var headers = ["Content-Type: application/json"]
-	var url = Globals.LEADERBOARD_URL
-	
-	# TODO(Richo): Instead of always making a request, change it to only submit a new
-	# score if we got a new highscore. Also, make sure to fetch the leaderboard while
-	# the user is playing and store it in globals so that we can update the GUI without
-	# waiting for the request. 
-	$update_scores.request(url, headers, true, HTTPClient.METHOD_POST, query)
+	var http_request = Globals.submit_score_to_leaderboard()
+	http_request.connect("request_completed", self, "_on_update_scores_request_completed")
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("movement_up"):
-		SceneManager.back()
+		get_tree().reload_current_scene()
 
 func _on_update_scores_request_completed(result, response_code, headers, body):
+	$Leaderboard/Loading.queue_free()
 	if response_code != 200:
 		return
 	

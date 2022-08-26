@@ -41,3 +41,15 @@ func set_max_score(score):
 	score_file.open(SCORE_FILE_PATH, File.WRITE)
 	score_file.store_64(max_score)
 	score_file.close()
+	
+func submit_score_to_leaderboard():
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	
+	var query = JSON.print({"player": user_name, "score": score})
+	var headers = ["Content-Type: application/json"]
+	var url = Globals.LEADERBOARD_URL
+	
+	http_request.request(url, headers, true, HTTPClient.METHOD_POST, query)
+	return http_request
+

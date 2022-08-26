@@ -11,7 +11,7 @@ var rotation_speed := Vector2(1.0, 1.0)
 var remove_flag = false
 
 func _ready():
-	speed = rand_range(0, MAX_SPEED)
+	speed = rand_range(0.01, MAX_SPEED)
 	rotation_speed = Vector2(rand_range(-2, 2), rand_range(-2, 2))
 	
 	# Same factor for all three axis to avoid collider bug

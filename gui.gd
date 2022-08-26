@@ -29,15 +29,10 @@ func update_score(s = 100):
 	
 func _input(event):
 	if Input.is_action_just_released("reset_max_score"):
-		update_max_score(0)
-
-func update_max_score(score):
-	Globals.set_max_score(score)
+		Globals.set_max_score(0)
 
 func _on_airplane_game_over():
 	game_over = true
-	if Globals.score > Globals.max_score:
-		update_max_score(Globals.score)
 
 func _on_airplane_bullet_time_score(score):
 	if game_over: return

@@ -31,10 +31,7 @@ func gameover(delta):
 	$rotation.rotation.z -= delta * 2
 	$rotation/mesh.rotation.x += delta * 3
 	translate_object_local(Vector3.RIGHT * vel.x * delta + Vector3.UP * vel.y * delta)
-	
-	if abs(vel.y) > MAX_SPEED:
-		SceneManager.change_scene("res://end.tscn")
-
+		
 func control(delta):
 	if Input.is_action_pressed("movement_up"):
 		vel.y -= GRAVITY * 2.5 * delta

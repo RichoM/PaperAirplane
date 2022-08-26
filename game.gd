@@ -1,8 +1,9 @@
 extends Spatial
 
-func _ready():
-	SceneManager.register_current_scene()
-	#$fetch_scores.request(Globals.LEADERBOARD_URL)
-
-func _on_fetch_scores_request_completed(result, response_code, headers, body):
-	pass # TODO(Richo): Store the leaderboard in globals to avoid waiting later!
+func _on_airplane_game_over():
+	yield(get_tree().create_timer(1.0), "timeout")
+	$Camera.follow_player = false
+	$GUI_layer.queue_free()
+	var end_scene = preload("res://end.tscn").instance()
+	add_child(end_scene)
+	

@@ -3,11 +3,14 @@ extends Spatial
 export var indices_path : NodePath
 export var players_path : NodePath
 export var scores_path : NodePath
+export var loading_path : NodePath
 
 func _ready():
 	$fetch_scores.request(Globals.LEADERBOARD_URL)
 
 func _on_fetch_scores_request_completed(result, response_code, headers, body):
+	get_node(loading_path).queue_free()
+	
 	if response_code != 200:
 		back_to_menu()
 		return

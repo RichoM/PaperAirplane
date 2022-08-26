@@ -9,12 +9,14 @@ onready var light : DirectionalLight = get_node(light_path)
 var offset := Vector2()
 var bullet_time := false
 var bullet_time_begin := 0
+var follow_player = true
 
 func _ready():
 	offset.x = player.global_transform.origin.x - global_transform.origin.x
 	offset.y = player.global_transform.origin.y - global_transform.origin.y
 
 func _process(delta):
+	if not follow_player: return
 	global_transform.origin.x = player.global_transform.origin.x - offset.x
 	global_transform.origin.y = player.global_transform.origin.y - offset.y
 	var light_energy = light.light_energy
