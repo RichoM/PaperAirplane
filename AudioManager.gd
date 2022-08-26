@@ -3,7 +3,7 @@ extends Spatial
 var background_scores = [preload("res://music/Danyah Rays - Can't Stop The Ocean.mp3"), 
 						preload("res://music/Danyah Rays - Overt Indecision.mp3"),
 						preload("res://music/John Neysmith - The Last Mannerisms.mp3")]
-const LAST_BACKGROUND_PATH = "user://last_background_music.bin"
+const LAST_BACKGROUND_PATH = "user://last_background_music.paperairplane.bin"
 
 var explosions = [preload("res://sfx/explosion (1).wav"),
 				preload("res://sfx/explosion (2).wav"),
