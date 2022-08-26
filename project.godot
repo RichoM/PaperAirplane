@@ -32,7 +32,7 @@ SceneManager="*res://scene_manager.gd"
 [display]
 
 window/handheld/orientation="sensor_landscape"
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
 [input]
