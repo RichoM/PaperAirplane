@@ -19,8 +19,12 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("movement_up"):
+	if Input.is_action_just_released("movement_up"):
 		get_tree().reload_current_scene()
+		
+
+func _on_back_button_pressed():
+	SceneManager.back()
 
 func _on_update_scores_request_completed(result, response_code, headers, body):
 	$Leaderboard/Loading.queue_free()
@@ -63,3 +67,4 @@ func _on_update_scores_request_completed(result, response_code, headers, body):
 			players_node.get_child(i).add_color_override("font_color", Color(1,0,0))
 			scores_node.get_child(i).add_color_override("font_color", Color(1,0,0))
 			
+

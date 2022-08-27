@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://end.gd" type="Script" id=1]
 [ext_resource path="res://ui_font/Tomorrow-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://sfx/win/Ta Da-SoundBible.com-1884170640.wav" type="AudioStream" id=3]
+[ext_resource path="res://icon_font/icon_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://ui_font/Tomorrow-SemiBold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://loading.gd" type="Script" id=8]
 [ext_resource path="res://ui_font/Tomorrow-Medium.ttf" type="DynamicFontData" id=11]
@@ -427,4 +428,21 @@ anims/highscore = SubResource( 8 )
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
+[node name="back_button" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 94.0
+margin_bottom = 73.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.403922, 0, 0, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "<"
+flat = true
+clip_text = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="Leaderboard/Loading/timer" to="Leaderboard/Loading" method="_on_timer_timeout"]
+[connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]
