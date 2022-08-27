@@ -34,7 +34,8 @@ func _ready():
 func read_pc_id():
 	var file = File.new()
 	var error = file.open(PC_ID_FILE_PATH, File.READ)
-	pc_id = file.get_as_text()
+	if error == OK:
+		pc_id = file.get_as_text()
 	file.close()
 	
 func set_pc_id(id):
@@ -47,7 +48,8 @@ func set_pc_id(id):
 func read_user_name():
 	var file = File.new()
 	var error = file.open(USER_NAME_FILE_PATH, File.READ)
-	user_name = file.get_as_text()
+	if error == OK:
+		user_name = file.get_as_text()
 	file.close()
 	
 func set_user_name(s):
@@ -60,7 +62,8 @@ func set_user_name(s):
 func read_max_score():
 	var score_file = File.new()
 	var error = score_file.open(SCORE_FILE_PATH, File.READ)
-	max_score = score_file.get_64()
+	if error == OK:
+		max_score = score_file.get_64()
 	score_file.close()
 
 func set_max_score(score):
