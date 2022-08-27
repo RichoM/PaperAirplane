@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="Paper Airplane"
 run/main_scene="res://menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://icon/icon.png"
 
 [autoload]
 
