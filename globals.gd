@@ -18,7 +18,7 @@ func _ready():
 	
 func read_user_name():
 	var file = File.new()
-	var error = file.open(USER_NAME_FILE_PATH, File.READ)	
+	var error = file.open(USER_NAME_FILE_PATH, File.READ)
 	user_name = file.get_as_text()
 	file.close()
 	
