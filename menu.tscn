@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://airplane_menu.gd" type="Script" id=1]
 [ext_resource path="res://stars/stars.shader" type="Shader" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://airplane/legalpad.jpg" type="Texture" id=11]
 [ext_resource path="res://stars/stars.png" type="Texture" id=12]
 [ext_resource path="res://space_noise/space_noise_0.tres" type="Material" id=13]
+[ext_resource path="res://ui_font/Tomorrow-SemiBold.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="PlaneMesh" id=2]
 
@@ -64,6 +65,12 @@ size = 29
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 31
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
 
 [node name="Menu" type="Spatial"]
 script = ExtResource( 7 )
@@ -192,13 +199,26 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 24.0
 margin_top = -87.0
-margin_right = 104.0
+margin_right = 379.0
 margin_bottom = -24.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.403922, 0, 0, 1 )
 custom_fonts/font = ExtResource( 8 )
-text = "e"
+text = "U"
 flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="current_name" type="Label" parent="GUI_layer/change_name"]
+anchor_left = 0.228
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.31999
+custom_fonts/font = SubResource( 10 )
+text = "Richo"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

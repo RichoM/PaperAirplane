@@ -2,6 +2,7 @@ extends Spatial
 
 func _ready():
 	SceneManager.register_current_scene()
+	$GUI_layer/change_name/current_name.text = Globals.user_name
 
 func _on_new_game_pressed():
 	if Globals.user_name == "":
