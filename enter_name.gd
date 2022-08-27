@@ -14,8 +14,9 @@ func _on_player_name_text_entered(new_text):
 	accept()
 		
 func accept():
-	if player_name.text != "":
-		Globals.set_user_name(player_name.text)
+	var name = player_name.text.strip_edges()
+	if name != "":
+		Globals.set_user_name(name)
 	else:
 		Globals.set_user_name(player_name.placeholder_text)
 	

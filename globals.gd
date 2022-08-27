@@ -81,7 +81,7 @@ func submit_score_to_leaderboard():
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
-	var player = pc_id + "@" + user_name
+	var player = pc_id + "@" + user_name.replace("*", "__ASTERISK__")
 	var query = JSON.print({"player": player, "score": score})
 	var headers = ["Content-Type: application/json"]
 	var url = Globals.LEADERBOARD_URL
@@ -117,6 +117,7 @@ func _on_leaderboard_ready(result, response_code, headers, body):
 			else:
 				id = name_parts[0]
 				name = name_parts[1]
+			name = name.replace("__ASTERISK__", "*")
 				
 			var score = leaderboard[i]["score"]
 			var is_me = pc_id == id and user_name == name
