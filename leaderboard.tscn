@@ -60,8 +60,6 @@ players_path = NodePath("CanvasLayer/HBoxContainer/Players")
 scores_path = NodePath("CanvasLayer/HBoxContainer/Scores")
 loading_path = NodePath("CanvasLayer/Loading")
 
-[node name="fetch_scores" type="HTTPRequest" parent="."]
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054644, 0, 0.5 )
 keep_aspect = 0
@@ -465,6 +463,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="request_completed" from="fetch_scores" to="." method="_on_fetch_scores_request_completed"]
-[connection signal="request_completed" from="fetch_scores" to="CanvasLayer/Loading" method="_on_fetch_scores_request_completed"]
 [connection signal="timeout" from="CanvasLayer/Loading/timer" to="CanvasLayer/Loading" method="_on_timer_timeout"]

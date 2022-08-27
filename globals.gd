@@ -13,6 +13,9 @@ var user_name
 var max_score
 
 var score = 0
+var leaderboard = null
+
+signal leaderboard_ready(leaderboard)
 
 const uuid = preload("res://uuid.gd")
 
@@ -25,6 +28,7 @@ func _ready():
 		set_pc_id(uuid.v4())
 	read_user_name()
 	read_max_score()
+	fetch_leaderboard()
 
 
 func read_pc_id():
@@ -65,6 +69,13 @@ func set_max_score(score):
 	score_file.open(SCORE_FILE_PATH, File.WRITE)
 	score_file.store_64(max_score)
 	score_file.close()
+
+func fetch_leaderboard():
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.connect("request_completed", self, "_on_leaderboard_ready")
+	http_request.request(LEADERBOARD_URL)
+	return http_request
 	
 func submit_score_to_leaderboard():
 	var http_request = HTTPRequest.new()
@@ -75,6 +86,40 @@ func submit_score_to_leaderboard():
 	var headers = ["Content-Type: application/json"]
 	var url = Globals.LEADERBOARD_URL
 	
+	http_request.connect("request_completed", self, "_on_leaderboard_ready")
 	http_request.request(url, headers, true, HTTPClient.METHOD_POST, query)
 	return http_request
 
+
+func _on_leaderboard_ready(result, response_code, headers, body):
+	if response_code != 200: return
+	
+	var json = JSON.parse(body.get_string_from_utf8())
+	if json.error != OK: return
+	
+	leaderboard = json.result["dreamlo"]["leaderboard"]
+	if leaderboard == null: # The leaderboard is empty
+		leaderboard = []
+	else:
+		leaderboard = leaderboard["entry"]
+		
+		# HACK(Richo): It seems if only one score is submitted we don't get an array
+		if typeof(leaderboard) != TYPE_ARRAY:
+			leaderboard = [leaderboard]
+			
+		for i in range(len(leaderboard)):
+			var full_name = leaderboard[i]["name"]
+			var name_parts = full_name.split("@", true, 1)
+			var id = ""
+			var name = ""
+			if len(name_parts) == 1:
+				name = name_parts[0]
+			else:
+				id = name_parts[0]
+				name = name_parts[1]
+				
+			var score = leaderboard[i]["score"]
+			var is_me = pc_id == id and user_name == name
+			leaderboard[i] = {"name": name, "score": score, "me?": is_me}
+		
+	emit_signal("leaderboard_ready", leaderboard)

@@ -49,6 +49,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+loading_path = NodePath("Leaderboard/Loading")
 indices_path = NodePath("Leaderboard/HBoxContainer/Indices")
 players_path = NodePath("Leaderboard/HBoxContainer/Players")
 scores_path = NodePath("Leaderboard/HBoxContainer/Scores")
