@@ -34,10 +34,20 @@ func _on_fetch_scores_request_completed(result, response_code, headers, body):
 	var players_node = get_node(players_path)
 	var scores_node = get_node(scores_path)
 	for i in range(min(10, len(leaderboard))):
-		players_node.get_child(i).text = leaderboard[i]["name"].substr(0, 24)
+		var full_name = leaderboard[i]["name"]
+		var name_parts = full_name.split("@", true, 1)
+		var pc_id = ""
+		var user_name = ""
+		if len(name_parts) == 1:
+			user_name = name_parts[0]
+		else:
+			pc_id = name_parts[0]
+			user_name = name_parts[1]
+			
+		players_node.get_child(i).text = user_name.substr(0, 24)
 		scores_node.get_child(i).text = str(leaderboard[i]["score"])
 		
-		if Globals.user_name == leaderboard[i]["name"]:
+		if Globals.pc_id == pc_id and Globals.user_name == user_name:
 			indices_node.get_child(i).add_color_override("font_color", Color(1,0,0))
 			players_node.get_child(i).add_color_override("font_color", Color(1,0,0))
 			scores_node.get_child(i).add_color_override("font_color", Color(1,0,0))
