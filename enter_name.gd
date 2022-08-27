@@ -6,6 +6,8 @@ onready var player_name : LineEdit = get_node(player_name_path)
 func _ready():
 	if Globals.user_name != "":
 		player_name.placeholder_text = Globals.user_name
+	else:
+		player_name.placeholder_text = "Anon" + str(randi() % 9000 + 1000)
 	
 func _on_accept_button_pressed():
 	accept()
