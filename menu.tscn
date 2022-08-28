@@ -217,7 +217,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.31999
 custom_fonts/font = SubResource( 10 )
-text = "Richo"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

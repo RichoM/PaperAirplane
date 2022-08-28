@@ -9,8 +9,8 @@ const USER_NAME_FILE_PATH = "user://user_name.paperairplane.bin"
 const SCORE_FILE_PATH = "user://max_score.paperairplane.bin"
 
 var pc_id
-var user_name
-var max_score
+var user_name = ""
+var max_score = 0
 
 var score = 0
 var leaderboard = null
