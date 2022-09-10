@@ -1,8 +1,6 @@
 extends Node
 
-const SERVER_URL = "https://sum-richo.herokuapp.com/leaderboard/"
 const LEADERBOARD_ID = "63062a5d8f40bba6d06f60be*KQQwDhbyYkW3wOtnkzx_2glfPQcl4Z0kCNAX0oG-kb7g"
-const LEADERBOARD_URL = SERVER_URL + LEADERBOARD_ID
 
 const PC_ID_FILE_PATH = "user://uuid.paperairplane.bin"
 const USER_NAME_FILE_PATH = "user://user_name.paperairplane.bin"
@@ -15,12 +13,11 @@ var max_score = 0
 var score = 0
 var leaderboard = null
 
+var server_url
+
 signal leaderboard_ready(leaderboard)
 
 const uuid = preload("res://uuid.gd")
-
-func random_uuid():
-	return uuid.v4()
 
 func _ready():
 	read_pc_id()
@@ -29,7 +26,6 @@ func _ready():
 	read_user_name()
 	read_max_score()
 	fetch_leaderboard()
-
 
 func read_pc_id():
 	var file = File.new()
@@ -74,24 +70,41 @@ func set_max_score(score):
 	score_file.close()
 
 func fetch_leaderboard():
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-	http_request.connect("request_completed", self, "_on_leaderboard_ready")
-	http_request.request(LEADERBOARD_URL)
-	return http_request
+	if server_url == null:
+		var http_request = HTTPRequest.new()
+		add_child(http_request) # Is it necessary?
+		http_request.request("https://richom.github.io/sum.txt")
+		var result = yield(http_request, "request_completed")
+		var response_code = result[1]
+		var body = result[3]
+		if response_code != 200: return
+		var data = body.get_string_from_utf8()
+		server_url = data.strip_edges().trim_suffix("/") + "/leaderboard/"
+		print(server_url)
+		http_request.queue_free()
+		fetch_leaderboard() # Now we can actually fetch the leaderboard
+	else:
+		var http_request = HTTPRequest.new()
+		add_child(http_request)
+		http_request.connect("request_completed", self, "_on_leaderboard_ready")
+		http_request.request(server_url + LEADERBOARD_ID)
+		yield(http_request, "request_completed")
+		http_request.queue_free()
 	
 func submit_score_to_leaderboard():
+	if server_url == null: return # We better already have the server url!
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
 	var player = pc_id + "@" + user_name.replace("*", "__ASTERISK__")
 	var query = JSON.print({"player": player, "score": score})
 	var headers = ["Content-Type: application/json"]
-	var url = Globals.LEADERBOARD_URL
+	var url = server_url + LEADERBOARD_ID
 	
 	http_request.connect("request_completed", self, "_on_leaderboard_ready")
 	http_request.request(url, headers, true, HTTPClient.METHOD_POST, query)
-	return http_request
+	yield(http_request, "request_completed")
+	http_request.queue_free()
 
 
 func _on_leaderboard_ready(result, response_code, headers, body):
