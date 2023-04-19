@@ -3,11 +3,18 @@ extends Spatial
 export var player_name_path : NodePath
 onready var player_name : LineEdit = get_node(player_name_path)
 
+func create_fantasy_name():
+	var fantasy_names = ["Nebulancer", "Stardancer", "Galactic", "Solarwind", "Starseeker", "Skyglider", "Startrail", "Celestial", "Astrospark", "Nebulaflare", "Solarstorm", "Lunarwave", "Intergalactic", "Spacehawk", "Hypernova", "Starcrafter", "Cosmicpilot", "Celestiadream", "Planetshaper", "Starstream", "Sunspark", "Starfrost", "Moonshifter", "Gravityglider", "Cosmoquest", "Astromancer", "Interstellar", "Solarflare", "Warpwing", "Rocketrunner", "Starlighter", "Starcruiser", "Meteorfall", "Cosmicdust", "Voidvoyager", "Planetary", "Galaxyhawk", "Cosmosail", "Lunarlight", "Astroblade", "Starwatcher", "Nebulight", "Galaxysailor", "Cosmicrider", "Planetscape", "Astrocaster", "Meteorite", "Rocketeer", "Spacewanderer", "Nebulon", "Nebulush", "Astrovoyage", "Astronomer", "Spacestrider", "Astrofrost", "Novastrider", "Starquest", "Starblaze"]
+	randomize()
+	var random_name = fantasy_names[randi() % fantasy_names.size()]
+	var random_number = randi() % 900 + 100
+	return random_name + "-" + str(random_number)
+
 func _ready():
 	if Globals.user_name != "":
 		player_name.placeholder_text = Globals.user_name
 	else:
-		player_name.placeholder_text = "Anon" + str(randi() % 9000 + 1000)
+		player_name.placeholder_text = create_fantasy_name()
 	
 func _on_accept_button_pressed():
 	accept()
